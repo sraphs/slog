@@ -41,6 +41,7 @@ type KLogger interface {
 
 // FullLogger is the combination of Logger, FormatLogger, CtxLogger and Control.
 type FullLogger interface {
+	KLogger
 	LevelLogger
 	FormatLogger
 	Control
