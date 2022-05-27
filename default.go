@@ -8,6 +8,8 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+const defaultLoggerCallerSkipFrameCount = 3
+
 var logger FullLogger
 
 func init() {
@@ -39,7 +41,7 @@ func New(c *Config) FullLogger {
 	l := newZerolog(w)
 	lv := ParseLevel(c.Level)
 	l.SetLevel(lv)
-	return &defaultLogger{log: l}
+	return &Helper{log: l}
 }
 
 func Clone() FullLogger {
@@ -126,96 +128,94 @@ func Fatalf(format string, v ...interface{}) {
 	logger.Fatalf(format, v...)
 }
 
-var _ FullLogger = (*defaultLogger)(nil)
+var _ FullLogger = (*Helper)(nil)
 
-const defaultLoggerCallerSkipFrameCount = 3
-
-type defaultLogger struct {
+type Helper struct {
 	log *zerolog
 }
 
-func (ll *defaultLogger) Clone() FullLogger {
-	l2 := new(defaultLogger)
+func (ll *Helper) Clone() FullLogger {
+	l2 := new(Helper)
 	l2.log = ll.log.Clone()
 	return l2
 }
 
-func (ll *defaultLogger) SetOutput(w io.Writer) Control {
+func (ll *Helper) SetOutput(w io.Writer) Control {
 	ll.log.SetOutput(w)
 	return ll
 }
 
-func (ll *defaultLogger) SetLevel(lv Level) Control {
+func (ll *Helper) SetLevel(lv Level) Control {
 	ll.log.SetLevel(lv)
 	return ll
 }
 
-func (ll *defaultLogger) WithTimestamp() FullLogger {
+func (ll *Helper) WithTimestamp() FullLogger {
 	ll.log.WithTimestamp()
 	return ll
 }
 
-func (ll *defaultLogger) WithCaller() FullLogger {
+func (ll *Helper) WithCaller() FullLogger {
 	ll.log.WithCallerWithSkipFrameCount(defaultLoggerCallerSkipFrameCount)
 	return ll
 }
 
-func (ll *defaultLogger) WithCallerWithSkipFrameCount(skipFrameCount int) FullLogger {
+func (ll *Helper) WithCallerWithSkipFrameCount(skipFrameCount int) FullLogger {
 	ll.log.WithCallerWithSkipFrameCount(defaultLoggerCallerSkipFrameCount + skipFrameCount)
 	return ll
 }
 
-func (ll *defaultLogger) WithStack() FullLogger {
+func (ll *Helper) WithStack() FullLogger {
 	ll.log.WithStack()
 	return ll
 }
 
-func (ll *defaultLogger) WithFields(fields ...interface{}) FullLogger {
+func (ll *Helper) WithFields(fields ...interface{}) FullLogger {
 	ll.log.WithFields(fields...)
 	return ll
 }
 
-func (ll *defaultLogger) Log(lv Level, v ...interface{}) error {
+func (ll *Helper) Log(lv Level, v ...interface{}) error {
 	ll.log.Log(lv, v...)
 	return nil
 }
 
-func (ll *defaultLogger) Debug(v ...interface{}) {
+func (ll *Helper) Debug(v ...interface{}) {
 	ll.Log(LevelDebug, v...)
 }
 
-func (ll *defaultLogger) Info(v ...interface{}) {
+func (ll *Helper) Info(v ...interface{}) {
 	ll.Log(LevelInfo, v...)
 }
 
-func (ll *defaultLogger) Warn(v ...interface{}) {
+func (ll *Helper) Warn(v ...interface{}) {
 	ll.Log(LevelWarn, v...)
 }
 
-func (ll *defaultLogger) Error(v ...interface{}) {
+func (ll *Helper) Error(v ...interface{}) {
 	ll.Log(LevelError, v...)
 }
 
-func (ll *defaultLogger) Fatal(v ...interface{}) {
+func (ll *Helper) Fatal(v ...interface{}) {
 	ll.Log(LevelFatal, v...)
 }
 
-func (ll *defaultLogger) Debugf(format string, v ...interface{}) {
+func (ll *Helper) Debugf(format string, v ...interface{}) {
 	ll.Log(LevelDebug, fmt.Sprintf(format, v...))
 }
 
-func (ll *defaultLogger) Infof(format string, v ...interface{}) {
+func (ll *Helper) Infof(format string, v ...interface{}) {
 	ll.Log(LevelInfo, fmt.Sprintf(format, v...))
 }
 
-func (ll *defaultLogger) Warnf(format string, v ...interface{}) {
+func (ll *Helper) Warnf(format string, v ...interface{}) {
 	ll.Log(LevelWarn, fmt.Sprintf(format, v...))
 }
 
-func (ll *defaultLogger) Errorf(format string, v ...interface{}) {
+func (ll *Helper) Errorf(format string, v ...interface{}) {
 	ll.Log(LevelError, fmt.Sprintf(format, v...))
 }
 
-func (ll *defaultLogger) Fatalf(format string, v ...interface{}) {
+func (ll *Helper) Fatalf(format string, v ...interface{}) {
 	ll.Log(LevelFatal, fmt.Sprintf(format, v...))
 }
