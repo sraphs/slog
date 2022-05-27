@@ -1,18 +1,3 @@
-# slog
-
-[![CI](https://github.com/sraphs/slog/actions/workflows/ci.yml/badge.svg)](https://github.com/sraphs/slog/actions/workflows/ci.yml)
-
->  Go logging library.
-
-## Features
-
-- Logger interface for business-adapted log access.
-- use config to init logger.
-- zerolog implementation.
-
-## Usage
-
-```go
 package slog_test
 
 import (
@@ -88,20 +73,3 @@ func outer() error {
 	}
 	return nil
 }
-```
-
-## Contributing
-
-We alway welcome your contributions :clap:
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-## CHANGELOG
-See [Releases](https://github.com/sraphs/log/releases)
-
-## License
-[MIT © sraph.com](./LICENSE)

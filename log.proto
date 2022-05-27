@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package sraph.slog;
+
+option go_package = "github.com/sraphs/slog";
+
+message Config {
+  // level is the minimum severity level at which to log. e.g. "info".
+  string level = 1;
+  // path to the log file. e.g. "/var/log/my_app.log"
+  string path = 2;
+  // max_size is the maximum size to store in the log file. unit is MB.
+  int32 max_size = 3;
+  // max_age is the maximum age of the log file. unit is days.
+  int32 max_age = 4;
+}
