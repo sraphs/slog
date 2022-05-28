@@ -91,6 +91,11 @@ func Info(v ...interface{}) {
 	logger.Info(v...)
 }
 
+// Printf is alias of Infof
+func Print(v ...interface{}) {
+	logger.Info(v...)
+}
+
 func Warn(v ...interface{}) {
 	logger.Warn(v...)
 }
@@ -110,6 +115,11 @@ func Debugf(format string, v ...interface{}) {
 
 // Infof calls the default logger's Infof method.
 func Infof(format string, v ...interface{}) {
+	logger.Infof(format, v...)
+}
+
+// Printf is alias of Infof
+func Printf(format string, v ...interface{}) {
 	logger.Infof(format, v...)
 }
 
@@ -188,6 +198,10 @@ func (ll *Helper) Info(v ...interface{}) {
 	ll.Log(LevelInfo, v...)
 }
 
+func (ll *Helper) Print(v ...interface{}) {
+	ll.Log(LevelInfo, v...)
+}
+
 func (ll *Helper) Warn(v ...interface{}) {
 	ll.Log(LevelWarn, v...)
 }
@@ -205,6 +219,10 @@ func (ll *Helper) Debugf(format string, v ...interface{}) {
 }
 
 func (ll *Helper) Infof(format string, v ...interface{}) {
+	ll.Log(LevelInfo, fmt.Sprintf(format, v...))
+}
+
+func (ll *Helper) Printf(format string, v ...interface{}) {
 	ll.Log(LevelInfo, fmt.Sprintf(format, v...))
 }
 

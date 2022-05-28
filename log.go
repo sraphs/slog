@@ -14,6 +14,7 @@ import (
 type LevelLogger interface {
 	Debug(v ...interface{})
 	Info(v ...interface{})
+	Print(v ...interface{}) // Print is an alias of Info().
 	Warn(v ...interface{})
 	Error(v ...interface{})
 	Fatal(v ...interface{})
@@ -23,6 +24,7 @@ type LevelLogger interface {
 type FormatLogger interface {
 	Debugf(format string, v ...interface{})
 	Infof(format string, v ...interface{})
+	Printf(format string, v ...interface{}) // Printf is an alias for Infof.
 	Warnf(format string, v ...interface{})
 	Errorf(format string, v ...interface{})
 	Fatalf(format string, v ...interface{})
