@@ -83,6 +83,10 @@ func DefaultLogger() FullLogger {
 	return logger
 }
 
+func Log(lv Level, v ...interface{}) {
+	logger.Log(lv, v...)
+}
+
 func Debug(v ...interface{}) {
 	logger.Debug(v...)
 }
