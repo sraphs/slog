@@ -109,6 +109,7 @@ func (z *zerolog) Clone() *zerolog {
 	defer z2.mu.Unlock()
 	z2.level = z.level
 	z2.log = z.log.With().Logger()
+	z2.w = z.w
 	return z2
 }
 
