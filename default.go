@@ -58,23 +58,23 @@ func SetOutput(w io.Writer) Control {
 	return logger.SetOutput(w)
 }
 
-func WithTimestamp() Control {
+func WithTimestamp() FullLogger {
 	return logger.WithTimestamp()
 }
 
-func WithCaller() Control {
+func WithCaller() FullLogger {
 	return logger.WithCaller()
 }
 
-func WithCallerWithSkipFrameCount(skipFrameCount int) Control {
+func WithCallerWithSkipFrameCount(skipFrameCount int) FullLogger {
 	return logger.WithCallerWithSkipFrameCount(skipFrameCount)
 }
 
-func WithStack() Control {
+func WithStack() FullLogger {
 	return logger.WithStack()
 }
 
-func WithFields(fields ...interface{}) Control {
+func WithFields(fields ...interface{}) FullLogger {
 	return logger.WithFields(fields...)
 }
 
