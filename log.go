@@ -2,6 +2,7 @@
 package slog
 
 import (
+	"context"
 	"io"
 	"strings"
 
@@ -86,4 +87,21 @@ func ParseLevel(lv string) Level {
 	}
 
 	return LevelInfo
+}
+
+// loggerKey points to the value in the context where the logger is stored.
+type loggerKey struct{}
+
+// WithLogger creates a new context with the provided logger attached.
+func WithLogger(ctx context.Context, logger FullLogger) context.Context {
+	return context.WithValue(ctx, loggerKey{}, logger)
+}
+
+// FromContext returns the logger stored in the context. If no such logger
+// exists, a default logger is returned.
+func FromContext(ctx context.Context) FullLogger {
+	if logger, ok := ctx.Value(loggerKey{}).(FullLogger); ok {
+		return logger
+	}
+	return DefaultLogger()
 }
