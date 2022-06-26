@@ -189,7 +189,7 @@ var (
 	CallerFieldName = "caller"
 
 	// CallerSkipFrameCount is the number of stack frames to skip to find the caller.
-	CallerSkipFrameCount = 2 + 1
+	CallerSkipFrameCount = 2
 
 	// CallerMarshalFunc allows customization of global caller marshaling
 	CallerMarshalFunc = func(file string, line int) string {

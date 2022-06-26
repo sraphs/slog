@@ -195,49 +195,49 @@ func (ll *Helper) Log(lv Level, v ...interface{}) error {
 }
 
 func (ll *Helper) Debug(v ...interface{}) {
-	ll.Log(LevelDebug, v...)
+	ll.log.Log(LevelDebug, v...)
 }
 
 func (ll *Helper) Info(v ...interface{}) {
-	ll.Log(LevelInfo, v...)
+	ll.log.Log(LevelInfo, v...)
 }
 
 func (ll *Helper) Print(v ...interface{}) {
-	ll.Log(LevelInfo, v...)
+	ll.log.Log(LevelInfo, v...)
 }
 
 func (ll *Helper) Warn(v ...interface{}) {
-	ll.Log(LevelWarn, v...)
+	ll.log.Log(LevelWarn, v...)
 }
 
 func (ll *Helper) Error(v ...interface{}) {
-	ll.Log(LevelError, v...)
+	ll.log.Log(LevelError, v...)
 }
 
 func (ll *Helper) Fatal(v ...interface{}) {
-	ll.Log(LevelFatal, v...)
+	ll.log.Log(LevelFatal, v...)
 }
 
 func (ll *Helper) Debugf(format string, v ...interface{}) {
-	ll.Log(LevelDebug, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelDebug, fmt.Sprintf(format, v...))
 }
 
 func (ll *Helper) Infof(format string, v ...interface{}) {
-	ll.Log(LevelInfo, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelInfo, fmt.Sprintf(format, v...))
 }
 
 func (ll *Helper) Printf(format string, v ...interface{}) {
-	ll.Log(LevelInfo, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelInfo, fmt.Sprintf(format, v...))
 }
 
 func (ll *Helper) Warnf(format string, v ...interface{}) {
-	ll.Log(LevelWarn, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelWarn, fmt.Sprintf(format, v...))
 }
 
 func (ll *Helper) Errorf(format string, v ...interface{}) {
-	ll.Log(LevelError, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelError, fmt.Sprintf(format, v...))
 }
 
 func (ll *Helper) Fatalf(format string, v ...interface{}) {
-	ll.Log(LevelFatal, fmt.Sprintf(format, v...))
+	ll.log.Log(LevelFatal, fmt.Sprintf(format, v...))
 }
